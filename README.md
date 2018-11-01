@@ -40,3 +40,10 @@ cd ~/catkin_ws/src
 git clone https://github.com/djorna/PathPlanning.git
 source ../devel/
 ```
+
+
+## Installing Example Data
+```shell
+cd ~/catkin_ws/src/path_planning
+./data/load_data.bash
+```
