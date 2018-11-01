@@ -1,0 +1,14 @@
+*.pdf
+build
+
+# Point cloud files
+*.est
+*.fcl
+*.gt
+*.inc
+*.pcd
+*.xyz
+*.zip
+
+# VSCode
+*.vscode
