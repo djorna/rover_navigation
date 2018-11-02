@@ -2,7 +2,7 @@
 
 
 template <typename T>
-class GridpMap<T>{
+class GridMap<T>{
 
 private:
     unsigned length; // L
@@ -11,21 +11,23 @@ private:
     std::tuple<float x, float y> origin;
 
 public:
-    GridpMap();
-    ~GridpMap();
-    void setPoint(int x, int y);
+  GridpMap();
+  ~GridMap();
+  void setPoint(int x, int y);
 
-    void pointToGrid(pcl::PointXYZ point, GridMap &map){
+  void addPointToGridMap(const pcl::PointXYZ &point)
 
-        int lengh = map.getLength();
-        unsigned cellSize = map.getCellSize();
+  void pointToGrid(pcl::PointXYZ point, GridMap &map){
 
-        if((point.x + length/2) / C_SIZE) < length / C_SIZE){
-            // map point to grid
+      int lengh = map.getLength();
+      unsigned cellSize = map.getCellSize();
 
-        }
-        else{
+      if((point.x + length/2) / C_SIZE) < length / C_SIZE){
+          // map point to grid
 
-        }
+      }
+      else{
+
+      }
 
 };

@@ -1,8 +1,12 @@
-cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
-project(PathPlanning)
-find_package(PCL 1.3 REQUIRED COMPONENTS common io)
+cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+
+project(pcd_read)
+
+find_package(PCL 1.2 REQUIRED)
+
 include_directories(${PCL_INCLUDE_DIRS})
 link_directories(${PCL_LIBRARY_DIRS})
 add_definitions(${PCL_DEFINITIONS})
-add_executable(view_point_cloud view_point_cloud.cpp)
-target_link_libraries(view_point_cloud ${PCL_COMMON_LIBRARIES} ${PCL_IO_LIBRARIES})
+
+add_executable (pcd_read pcd_read.cpp)
+target_link_libraries (pcd_read ${PCL_LIBRARIES})

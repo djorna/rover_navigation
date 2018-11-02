@@ -35,6 +35,9 @@
  *
  */
 
+ // Original source:
+ // https://github.com/PointCloudLibrary/pcl/blob/master/tools/xyz2pcd.cpp
+
 #include <pcl/io/pcd_io.h>
 #include <pcl/console/print.h>
 #include <pcl/console/parse.h>
@@ -114,5 +117,7 @@ int main (int argc, char** argv)
   // Convert to PCD and save
   PCDWriter w;
   w.writeBinaryCompressed (argv[pcd_file_indices[0]], cloud);
+
+  cout << "\nSuccessfully converted to pcd and saved as " << argv[pcd_file_indices[0]];
 }
 

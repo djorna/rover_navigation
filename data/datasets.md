@@ -5,5 +5,6 @@ Terrain 3D Mapping Dataset" is a useful repository of mars emulation point cloud
 The example data can be installed as follows:
 ```shell
 cd ~/catkin_ws/src/path_planning/data
-./load_data.bash
+chmod +x load_data.bash # make script executable
+./load_data.bash # run script to load data
 ```
