@@ -9,7 +9,7 @@ Featues:
 ## Requirements
 * Ubuntu 16.04 with ROS kinetic
 * ROS packages:  
-  * [nagigation stack](http://wiki.ros.org/navigation)
+  * [navigation stack](http://wiki.ros.org/navigation)
   * [grid_map](https://github.com/ANYbotics/grid_map)
 
 
