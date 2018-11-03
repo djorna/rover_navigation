@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: path_planning
+Description: Description of path_planning
+Version: 0.0.0
+Cflags: -I/usr/local/include
+Libs: -L/usr/local/lib -lpath_planning
+Requires: grid_map_core grid_map_ros grid_map_msgs roscpp std_msgs pcl_ros

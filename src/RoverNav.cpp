@@ -14,29 +14,32 @@
  *                 \/____/     \ /_____/
  */ 
 
-#include <rover_nav.h>
-#include <grid_map.h>
-#include <pcl>
+#include "path_planning/RoverNav.hpp"
 
 namespace rover {
 
 RoverNav::RoverNav() {
-  gridMap = GridMap({"elevation"});
+  map = grid_map::GridMap({"elevation"});
 }
 
-~RoverNav() {}
+RoverNav::~RoverNav() {}
 
-void addPointToGridMap(const pcl::PointXYZ &point) {
-  grid_map::Position(point.x, point.y);
-  if (gridMap.isInside(position)) gridMap.at(position) = point.z;      
+void RoverNav::addPointToGridMap(const pcl::PointXYZ &point) {
+  grid_map::Position position(point.x, point.y);
+  if (map.isInside(position)) {
+    // Delete this later
+    std::cout << "Added point at " << point.x << " " 
+              << point.y << " with value " << point.z;
+    map.atPosition("elevation", position) = point.z;  
+  }
 }
 
-void getGridMap(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr &cloud) {   
-      const int length = gridMap.getLength();
-      const int cellSize = gridMap.getResolution();
-      grid_map::Position position;        
+void RoverNav::getGridMap(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr &cloud) {   
+      //const int length = map.getLength();
+      //const int cellSize = map.getResolution();
+      //grid_map::Position position;        
 
-      for (pcl::PointCloud<pcl::PointXYZ>::iterator point = cloud->begin();
+      for (pcl::PointCloud<pcl::PointXYZ>::const_iterator point = cloud->begin();
             point < cloud->end(); 
             ++point) {
         addPointToGridMap(*point);

@@ -1,14 +1,19 @@
 /**              _______     __________          
- *              /\   _   \  /\____   __\         
- *              \ \  \ \  \ \/__/ \  \ /          
+ *              /\   __  \  /\____   __\         
+ *              \ \  \  \ \ \/__/ \  \ /          
  *               \ \  \_/  |    \__\  \
  *                \ \_____/    / \_____\ 
  *                 \/____/     \ /_____/
  */ 
 
-#pragma once;
+#pragma once
 
-#include <pcl>
+// PCL
+#include <pcl/point_cloud.h>
+#include <pcl/point_types.h>
+
+// grid_map
+#include <grid_map_core/GridMap.hpp>
 
 namespace rover {
 
@@ -16,6 +21,8 @@ class RoverNav
 {
 
 public:
+  grid_map::GridMap map;
+
   RoverNav();
 
   virtual ~RoverNav();
@@ -30,8 +37,7 @@ public:
    */
   void getGridMap(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr &cloud);
 
-private:
-  grid_map::GridMap gridMap;
+   
 
 }; /*RoverNav*/
 
