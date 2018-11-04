@@ -12,3 +12,12 @@ build
 
 # VSCode
 *.vscode
+
+# Build files
+*.gch
+
+# CMake
+*.cmake
+Makefile
+CMakeCache.txt
+CMakeFiles/*
