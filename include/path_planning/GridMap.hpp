@@ -17,28 +17,26 @@
 
 namespace rover {
 
-class RoverNav
+class GridMap : public grid_map::GridMap
 {
 
 public:
-  grid_map::GridMap map;
+  //grid_map::GridMap map;
 
-  RoverNav();
+  GridMap();
 
-  virtual ~RoverNav();
+  GridMap(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr &cloud);
 
   /** 
    * Register single point to Grid map if it fits.
    */
-  void addPointToGridMap(const pcl::PointXYZ &point);
+  void addPoint(const pcl::PointXYZ &point);
 
   /** 
    * Register entire point cloud to grid.
    */
-  void getGridMap(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr &cloud);
+  void addPointCloud(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr &cloud);   
 
-   
-
-}; /*RoverNav*/
+}; /*GridMap*/
 
 } /*namespace rover*/

@@ -134,7 +134,7 @@ include_directories(
 
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
-  src/RoverNav.cpp
+  src/GridMap.cpp
 )
 
 ## Add cmake target dependencies of the library
@@ -148,7 +148,7 @@ add_library(${PROJECT_NAME}
 add_executable(
   convert_pcl_node 
   src/convert_pcl_node.cpp
-  src/RoverNav.cpp
+  src/GridMap.cpp
 )
 
 ## Rename C++ executable without prefix
