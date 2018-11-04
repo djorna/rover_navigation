@@ -1,8 +1,0 @@
-prefix=/home/djorna/catkin_ws/src/path_planning/devel
-
-Name: path_planning
-Description: Description of path_planning
-Version: 0.0.0
-Cflags: -I/home/djorna/catkin_ws/src/path_planning/include
-Libs: -L/home/djorna/catkin_ws/src/path_planning/devel/lib -lpath_planning
-Requires: grid_map_core grid_map_ros grid_map_msgs roscpp std_msgs pcl_ros
