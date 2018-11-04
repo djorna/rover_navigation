@@ -1,4 +1,5 @@
-/**              _______     __________          
+/* GridMap.hpp
+ *               _______     __________          
  *              /\   __  \  /\____   __\         
  *              \ \  \  \ \ \/__/ \  \ /          
  *               \ \  \_/  |    \__\  \
@@ -21,11 +22,8 @@ class GridMap : public grid_map::GridMap
 {
 
 public:
-  //grid_map::GridMap map;
 
   GridMap();
-
-  GridMap(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr &cloud);
 
   /** 
    * Register single point to Grid map if it fits.
@@ -35,8 +33,8 @@ public:
   /** 
    * Register entire point cloud to grid.
    */
-  void addPointCloud(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr &cloud);   
+  void addPointCloud(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr& cloud);   
 
-}; /*GridMap*/
+}; /* GridMap */
 
-} /*namespace rover*/
+} /* namespace rover */

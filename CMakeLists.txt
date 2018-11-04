@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(path_planning)
+project(rover_navigation)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
@@ -147,7 +147,7 @@ add_library(${PROJECT_NAME}
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(
   convert_pcl_node 
-  src/convert_pcl_node.cpp
+  nodes/convert_pcl_node.cpp
   src/GridMap.cpp
 )
 

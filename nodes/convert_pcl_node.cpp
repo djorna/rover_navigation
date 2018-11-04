@@ -1,5 +1,5 @@
-// path_planning
-#include "path_planning/GridMap.hpp"
+// rover_navigation
+#include "rover_navigation/GridMap.hpp"
 
 // ROS
 #include <ros/ros.h>
@@ -50,28 +50,21 @@ int main(int argc, char** argv) {
 
   // Get grid map from point cloud  
   rover::GridMap map;
-  //map.setGeometry(Length(100, 100), 0.03, Position(0.0, 0.0));
   map.setGeometry(Length(10, 10), 0.5);
   map.setFrameId("map");
   std::cout << "Initializing...\n";
-  // initialize with zeros for now
-  //for (grid_map::GridMapIterator it(map); !it.isPastEnd(); ++it) {
-  //  map.at("elevation", *it) = 0.0;
-  //}
+  
   map.addPointCloud(cloud);
 
-  for (grid_map::GridMapIterator it(map); !it.isPastEnd(); ++it) {
-    std::cout << map.at("elevation", *it) << " ";
-  }
+  //for (grid_map::GridMapIterator it(map); !it.isPastEnd(); ++it) {
+  //  std::cout << map.at("elevation", *it) << " ";
+  //}
  
   ROS_INFO("Created map with size %f x %f m (%i x %i cells).\n The center of the map is located at (%f, %f) in the %s frame.",
     map.getLength().x(), map.getLength().y(),
     map.getSize()(0), map.getSize()(1),
     map.getPosition().x(), map.getPosition().y(), map.getFrameId().c_str());
 
-    
-
-  // 
   ros::Rate rate(30.0);
   while(nh.ok()) {
     ros::Time time = ros::Time::now();

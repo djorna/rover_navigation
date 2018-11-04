@@ -1,11 +1,11 @@
 <launch>
   <!-- Launch the convert to pcl example node -->
-  <node pkg="path_planning" type="convert_pcl_node" name="convert_pcl_node" output="screen" 
-args="$(find path_planning)/data/p2at_met/p2at_met_000/p2at_met_000.pcd"/>
+  <node pkg="rover_navigation" type="convert_pcl_node" name="convert_pcl_node" output="screen" 
+args="$(find rover_navigation)/data/p2at_met/p2at_met_000/p2at_met_000.pcd"/>
   <!-- Launch the grid map visualizer -->
   <node pkg="grid_map_visualization" type="grid_map_visualization" name="grid_map_visualization" output="screen">
-    <rosparam command="load" file="$(find path_planning)/config/rover_nav.yaml" />
+    <rosparam command="load" file="$(find rover_navigation)/config/rover.yaml" />
   </node>
   <!-- Launch RViz with the demo configuration -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find path_planning)/rviz/rover_nav.rviz" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rover_navigation)/rviz/rover.rviz" />
 </launch>

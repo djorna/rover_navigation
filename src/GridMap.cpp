@@ -6,7 +6,8 @@
  * Using grid_map library by ANYbotics
  */
 
-/**              _______     __________          
+/* GridMap.cpp
+ *               _______     __________          
  *              /\   _   \  /\____   __\         
  *              \ \  \ \  \ \/__/ \  \ /          
  *               \ \  \_/  |    \__\  \
@@ -14,34 +15,20 @@
  *                 \/____/     \ /_____/
  */ 
 
-#include "path_planning/GridMap.hpp"
+#include "rover_navigation/GridMap.hpp"
 
 namespace rover {
 
-GridMap::GridMap() {
-  grid_map::GridMap({"elevation"});
-  //map = grid_map::GridMap({"elevation"});  
-}
-
-//GridMap::~GridMap() {}
+GridMap::GridMap() : grid_map::GridMap({"elevation"}) {}
 
 void GridMap::addPoint(const pcl::PointXYZ& point) {
   grid_map::Position position(point.x, point.y);
   if (this->isInside(position)) {
-    // Delete this later : for debugging
-    //std::cout << "Added point at (" << point.x << ", " 
-    //          << point.y << ") with value " << point.z << "\n";
-    //
     this->atPosition("elevation", position) = point.z;  
-    //std::cout << "confirm position: " << this->atPosition("elevation", position) << "\n";
   }
 }
 
 void GridMap::addPointCloud(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr& cloud) {   
-      //const int length = map.getLength();
-      //const int cellSize = map.getResolution();
-      //grid_map::Position position;        
-
       for (pcl::PointCloud<pcl::PointXYZ>::const_iterator it = cloud->begin();
             it < cloud->end(); 
             ++it) {
@@ -49,4 +36,4 @@ void GridMap::addPointCloud(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr& clou
       }
 }
 
-} /*namespace rover*/
+} /* namespace rover */
