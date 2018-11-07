@@ -89,35 +89,65 @@ bool loadCloud (const string &filename, PointCloud<PointXYZ> &cloud)
   return (true);
 }
 
-/* ---[ */
+// For iterating through files
+
+#define BOOST_FILESYSTEM_VERSION 3
+#define BOOST_FILESYSTEM_NO_DEPRECATED 
+#include <boost/filesystem.hpp>
+#include <boost/algorithm/string.hpp>
+
+namespace fs = ::boost::filesystem;
+
+// return the filenames of all files that have the specified extension
+// in the specified directory and all subdirectories
+void get_all(const fs::path& root, const string& ext, vector<fs::path>& ret)
+{
+    if(!fs::exists(root) || !fs::is_directory(root)) return;
+
+    std::cout << "trying...\n";
+
+    fs::recursive_directory_iterator it(root);
+    fs::recursive_directory_iterator endit;
+
+    while(it != endit)
+    {
+        if(fs::is_regular_file(*it) && it->path().extension() == ext) ret.push_back(it->path());
+        ++it;
+
+    }
+
+}
+
 int main (int argc, char** argv)
 {
   print_info ("Convert a simple XYZ file to PCD format. For more information, use: %s -h\n", argv[0]);
 
-  if (argc < 3)
-  {
-    printHelp (argc, argv);
-    return (-1);
+  std::string root(argc <= 1 ? "." : argv[1]); // get root dir or use current dir
+  vector<fs::path> paths;
+  get_all(root, ".xyz", paths);
+
+  if (paths.size() == 0) {
+    std::cout << "No xyz files found in directory\n";
+  }
+  else {
+    std::cout << "Converting " << paths.size() << " xyz files to pcd.\n";
   }
 
-  // Parse the command line arguments for .pcd and .ply files
-  vector<int> pcd_file_indices = parse_file_extension_argument (argc, argv, ".pcd");
-  vector<int> xyz_file_indices = parse_file_extension_argument (argc, argv, ".xyz");
-  if (pcd_file_indices.size () != 1 || xyz_file_indices.size () != 1)
-  {
-    print_error ("Need one input XYZ file and one output PCD file.\n");
-    return (-1);
-  }
-
-  // Load the first file
-  PointCloud<PointXYZ> cloud;
-  if (!loadCloud (argv[xyz_file_indices[0]], cloud))
-    return (-1);
-
-  // Convert to PCD and save
   PCDWriter w;
-  w.writeBinaryCompressed (argv[pcd_file_indices[0]], cloud);
 
-  cout << "\nSuccessfully converted to pcd and saved as " << argv[pcd_file_indices[0]];
+  for (auto it = paths.begin(); it != paths.end(); ++it) {
+    PointCloud<PointXYZ> cloud;
+    loadCloud(it->generic_string(), cloud);
+    fs::path newFile = it->replace_extension(".pcd");
+    if (fs::exists(newFile)) {
+      cout << newFile << " already exits.\n";
+    }
+    else {
+      w.writeBinaryCompressed(newFile.generic_string(), cloud);
+      cout << "\nSuccessfully converted "<< *it << " to pcd and saved as " << newFile;
+    }
+  }
+
+  cout << "\nFinished.\n";
 }
 

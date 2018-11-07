@@ -50,7 +50,7 @@ int main(int argc, char** argv) {
 
   // Get grid map from point cloud  
   rover::GridMap map;
-  map.setGeometry(Length(10, 10), 0.5);
+  map.setGeometry(Length(20, 20), 0.05);
   map.setFrameId("map");
   std::cout << "Initializing...\n";
   
