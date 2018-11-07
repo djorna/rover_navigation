@@ -1,11 +1,31 @@
 <launch>
-  <!-- Launch the convert to pcl example node -->
+
+<!-- Launch the convert to pcl example node -->
   <node pkg="rover_navigation" type="convert_pcl_node" name="convert_pcl_node" output="screen" 
 args="$(find rover_navigation)/data/p2at_met/p2at_met_000/p2at_met_000.pcd"/>
-  <!-- Launch the grid map visualizer -->
+
+  <!-- Launch the grid map filters demo node. -->
+  <node pkg="grid_map_demos" type="filters_demo" name="grid_map_filter_demo" output="screen">
+    <!-- Input topic -->
+  	<param name="input_topic" value="/convert_pcl_node/grid_map" />
+  	<!-- Output topic -->
+  	<param name="output_topic" value="filtered_map" />
+  	<!-- Load grid map filter chain configuration -->
+    <rosparam command="load" file="$(find rover_navigation)/config/chain_filters.yaml" />
+  </node>
+
+  <!-- Load the general parameters (except for filter chain) for this demo. -->
+
+  <!-- Launch the grid map visualizer. -->
   <node pkg="grid_map_visualization" type="grid_map_visualization" name="grid_map_visualization" output="screen">
+    <rosparam command="load" file="$(find rover_navigation)/config/filters_demo.yaml" />
+  </node>
+  <node pkg="grid_map_visualization" type="grid_map_visualization" name="grid_map_visualization2" output="screen">
     <rosparam command="load" file="$(find rover_navigation)/config/rover.yaml" />
   </node>
-  <!-- Launch RViz with the demo configuration -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rover_navigation)/rviz/rover.rviz" />
+
+  <!-- Launch RViz with the demo configuration. -->
+  <!--node name="rviz" pkg="rviz" type="rviz" args="-d $(find grid_map_demos)/rviz/filters_demo.rviz" /-->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rover_navigation)/rviz/rover_filters.rviz" />
 </launch>
+

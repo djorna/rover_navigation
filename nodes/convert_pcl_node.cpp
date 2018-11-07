@@ -8,7 +8,6 @@
 #include <grid_map_ros/grid_map_ros.hpp>
 #include <grid_map_core/iterators/GridMapIterator.hpp>
 
-
 // pcl
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_cloud.h>
@@ -50,22 +49,22 @@ int main(int argc, char** argv) {
 
   // Get grid map from point cloud  
   rover::GridMap map;
-  map.setGeometry(Length(20, 20), 0.05);
+  map.setGeometry(Length(10, 10), 0.02);
   map.setFrameId("map");
   std::cout << "Initializing...\n";
   
-  map.addPointCloud(cloud);
+  for (grid_map::GridMapIterator it(map); !it.isPastEnd(); ++it) {
+    map.at("elevation", *it) = 0;
+  }
 
-  //for (grid_map::GridMapIterator it(map); !it.isPastEnd(); ++it) {
-  //  std::cout << map.at("elevation", *it) << " ";
-  //}
+  map.addPointCloud(cloud);
  
   ROS_INFO("Created map with size %f x %f m (%i x %i cells).\n The center of the map is located at (%f, %f) in the %s frame.",
     map.getLength().x(), map.getLength().y(),
     map.getSize()(0), map.getSize()(1),
     map.getPosition().x(), map.getPosition().y(), map.getFrameId().c_str());
 
-  ros::Rate rate(30.0);
+  ros::Rate rate(1); // rate in H
   while(nh.ok()) {
     ros::Time time = ros::Time::now();
 

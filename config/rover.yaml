@@ -12,24 +12,3 @@ grid_map_visualizations:
      layer: elevation
      data_min: 0.08
      data_max: -0.16
-
-
-
-grid_map_filters:
-  - name: slope
-    type: gridMapFilters/MathExpressionFilter
-    params:
-      output_layer: slope
-      expression: acos(normal_vectors_z)
-
-  - name: roughness
-    type: gridMapFilters/MathExpressionFilter
-    params:
-      output_layer: roughness
-      expression: abs(elevation_inpainted - elevation_smooth)
-
-  - name: traversability
-    type: gridMapFilters/MathExpressionFilter
-    params:
-      output_layer: traversability
-      expression: 0.5 * (1.0 - (slope / 0.6)) + 0.5 * (1.0 - (roughness / 0.1))
