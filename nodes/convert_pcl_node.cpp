@@ -52,10 +52,11 @@ int main(int argc, char** argv) {
   map.setGeometry(Length(10, 10), 0.02);
   map.setFrameId("map");
   std::cout << "Initializing...\n";
-  
-  for (grid_map::GridMapIterator it(map); !it.isPastEnd(); ++it) {
-    map.at("elevation", *it) = 0;
-  }
+
+  // initialize with zeros 
+  // for (grid_map::GridMapIterator it(map); !it.isPastEnd(); ++it) {
+  //   map.at("elevation", *it) = 0;
+  // }
 
   map.addPointCloud(cloud);
  
