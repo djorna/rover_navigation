@@ -65,7 +65,7 @@ int main(int argc, char** argv) {
     map.getSize()(0), map.getSize()(1),
     map.getPosition().x(), map.getPosition().y(), map.getFrameId().c_str());
 
-  ros::Rate rate(1); // rate in H
+  ros::Rate rate(1); // rate in Hz
   while(nh.ok()) {
     ros::Time time = ros::Time::now();
 

@@ -2,9 +2,10 @@
 
 ## Overview
 
-This ROS package is an extension of ANYbotics' grid_map package to include real-time point-cloud registration, optimum path planning, and GPU optimization.
+This ROS package is an extension of ANYbotics' grid_map package to include point-cloud registration. 
 
-Featues:
+TODO:
+* Path planning with OMPL
 
 ## Requirements
 * Ubuntu 16.04 with ROS kinetic
@@ -41,9 +42,12 @@ git clone https://github.com/djorna/PathPlanning.git
 source ../devel/
 ```
 
+## Demo 
 
-## Installing Example Data
-```shell
-cd ~/catkin_ws/src/path_planning
-./data/load_data.bash
-```
+    # Download example pcl data
+    cd ~/catkin_ws/src/path_planning
+    ./data/load_data.bash
+
+    # Show grid_map in rviz
+    source ~/catkin_ws/devel/setup.bash
+    roslaunch rover_navigation pcl_to_grid_map.launch
