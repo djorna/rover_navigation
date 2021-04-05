@@ -1,5 +1,7 @@
 # Rover Navigation
 
+**Disclaimer:** I started this project as part of [Western University's mars rover team](wemars.org), but have since abandoned it. The plan was to implement [A terrain description method for traversability analysis based on elevation grid map](https://github.com/djorna/rover_navigation/blob/master/papers/Terrain.pdf) in ROS using the [grid_map](http://wiki.ros.org/grid_map) library.
+
 ## Overview
 
 This ROS package is an extension of ANYbotics' grid_map package to include point-cloud registration. 
